@@ -11,7 +11,8 @@ from xmlrpc.server import SimpleXMLRPCRequestHandler
 
 from bluetooth_peripheral.bluez_peripheral import Peripheral
 from bluetooth_peripheral.dtniotsc_gatt_service import IoTSCService, IoTSCUuids
-
+import sqlite3
+import uuid
 
 logger = logging.getLogger(__name__)
 
@@ -125,6 +126,33 @@ class DTNIoTSCDaemon(object):
 
 class RequestHandler(SimpleXMLRPCRequestHandler):
     rpc_paths = ('/RPC2',)
+
+class IoTDB (object):
+	"""
+	class for database
+	"""
+	DB_location = '/RPC_database.sqlite'
+	
+	# initialize sqlite3 database, file location, connect to db file
+	def self.__init__(self):
+		self.db = sqlite3.connect(IoTDB.DB_location)
+		self.cursor = sqlite3.connection.cursor()
+
+		# create user_table
+		self.connection = self.cursor.execute("create table user_table(UUID text PRIMARY_KEY, MESSAGE text, FROM_USR text, TO_USR text, GPS_SIGNAL text)")
+
+		# create bluetooth_table
+		self.connection = self.cursor.execute("create table bluetooth_table(BLUETOOTH_ID text PRIMARY_KEY, UUID integer, TRANSMIT_TIME text, TRANSMISSION_TYPE text)")
+		
+		# create battery table
+		self.connection = self.cursor.execute("create table battery_table(BATTERY_ID text PRIMARY_KEY, BLUETOOTH_ID text)")
+
+	def insert_data(self, data_table):
+		self.connection.executemany("insert into user_table data_table(MESSAGE, FROM_USR, TO_USR) values (?, ?)", data_table) 
+
+	# execute table creation
+	def self.commit(self):
+		self.connection.commit()
 
 
 if __name__ == '__main__':
