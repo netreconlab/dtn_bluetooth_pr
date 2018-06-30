@@ -12,7 +12,6 @@ from xmlrpc.server import SimpleXMLRPCRequestHandler
 from bluetooth_peripheral.bluez_peripheral import Peripheral
 from bluetooth_peripheral.dtniotsc_gatt_service import IoTSCService, IoTSCUuids
 
-from dashboard.iotsc_dashboard import Sensors, IoTSCBroker
 
 logger = logging.getLogger(__name__)
 
@@ -29,12 +28,12 @@ def dtniotsc_cli(ctx, collector, bluetooth):
 @dtniotsc_cli.command(name='start', help="start GATT service and advertisements")
 @click.option('--deviceid', '-d', required=True, help="Host Name of Hub, %IP is replaced with the current IP address")
 @click.option('--alias', '-a', required=True, help="Bluetooth Alias Name")
-@click.option('--config-file', '-f', required=True, help="Input file consisting of sensor and mqtt configurations")
+#@click.option('--config-file', '-f', required=True, help="Input file consisting of sensor and mqtt configurations")
 @click.option('--verbose', '-v', count=True, help="Print info messages (-vv for debug messages)")
 @click.option('--auto-advertise', is_flag=True, help="Disable BLE advertising when not needed")
 @click.option('--log-file', '-l', required=False, help="Output file for log/debug")
 @click.pass_context
-def dtniotsc_start(ctx, deviceid, alias, config_file, verbose, auto_advertise, log_file):
+def dtniotsc_start(ctx, deviceid, alias, verbose, auto_advertise, log_file): #config_file, verbose, auto_advertise, log_file):
     if not log_file:
         log_file = "log.txt"
     
@@ -45,7 +44,7 @@ def dtniotsc_start(ctx, deviceid, alias, config_file, verbose, auto_advertise, l
         logging.basicConfig(filename=log_file, level=logging.INFO, format=log_format, filemode='w')
     else:
         logging.basicConfig(filename=log_file, level=logging.WARNING, format=log_format, filemode='w')
-    ctx.obj.run(deviceid, alias, config_file, auto_advertise)
+    ctx.obj.run(deviceid, alias, auto_advertise) #config_file, auto_advertise)
 
 class DTNIoTSCDaemon(object):
     """
@@ -66,12 +65,12 @@ class DTNIoTSCDaemon(object):
         self._auto_advertise = False
         self._deviceid = None
         self._iotsc_dashboard = None
-        self._config_file = None
+        #self._config_file = None
 
-    def run(self, deviceid, bluetooth_alias, config_file, auto_advertise):
+    def run(self, deviceid, bluetooth_alias, auto_advertise): #"""config_file,""" auto_advertise):
         self._deviceid = deviceid
         self._auto_advertise = auto_advertise
-        self._config_file = config_file
+        #self._config_file = config_file
         
         # prepare BLE GATT Service:
         self._ble_peripheral = Peripheral(bluetooth_alias, self._bluetooth_adapter)

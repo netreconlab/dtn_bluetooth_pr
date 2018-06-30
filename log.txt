@@ -1,0 +1,7 @@
+2018-06-30 21:14:20,023 INFO  [bluetooth_peripheral.bluez_peripheral] Creating BLE Peripheral with alias: Drone
+2018-06-30 21:14:20,038 INFO  [__main__] Starting RPC server
+2018-06-30 21:14:20,052 INFO  [bluetooth_peripheral.bluez_peripheral] Registering GATT application...
+2018-06-30 21:14:20,054 INFO  [bluetooth_peripheral.bluez_peripheral] --- Mainloop started ---
+2018-06-30 21:14:20,066 INFO  [bluetooth_peripheral.bluez_peripheral] GATT application registered
+2018-06-30 21:17:01,773 INFO  [bluetooth_peripheral.bluez_peripheral] --- Mainloop finished ---
+2018-06-30 21:17:01,787 INFO  [bluetooth_peripheral.bluez_peripheral] Peripheral unregistered
