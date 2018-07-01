@@ -1,7 +1,14 @@
-2018-06-30 21:14:20,023 INFO  [bluetooth_peripheral.bluez_peripheral] Creating BLE Peripheral with alias: Drone
-2018-06-30 21:14:20,038 INFO  [__main__] Starting RPC server
-2018-06-30 21:14:20,052 INFO  [bluetooth_peripheral.bluez_peripheral] Registering GATT application...
-2018-06-30 21:14:20,054 INFO  [bluetooth_peripheral.bluez_peripheral] --- Mainloop started ---
-2018-06-30 21:14:20,066 INFO  [bluetooth_peripheral.bluez_peripheral] GATT application registered
-2018-06-30 21:17:01,773 INFO  [bluetooth_peripheral.bluez_peripheral] --- Mainloop finished ---
-2018-06-30 21:17:01,787 INFO  [bluetooth_peripheral.bluez_peripheral] Peripheral unregistered
+2018-07-01 01:24:38,277 INFO  [bluetooth_peripheral.bluez_peripheral] Disabling BR/EDR...
+2018-07-01 01:24:38,325 INFO  [bluetooth_peripheral.bluez_peripheral] Creating BLE Peripheral with alias: Drone
+2018-07-01 01:24:38,335 INFO  [root] test3 false
+2018-07-01 01:24:38,345 INFO  [root] test5
+2018-07-01 01:24:38,346 INFO  [bluetooth_peripheral.bluez_peripheral] Registering Advertisement...
+2018-07-01 01:24:38,353 INFO  [__main__] Starting RPC server
+2018-07-01 01:24:38,367 INFO  [bluetooth_peripheral.bluez_peripheral] Registering GATT application...
+2018-07-01 01:24:38,369 INFO  [bluetooth_peripheral.bluez_peripheral] --- Mainloop started ---
+2018-07-01 01:24:38,370 INFO  [bluetooth_peripheral.bluez_peripheral] Hub is ready for onboarding
+2018-07-01 01:24:38,386 INFO  [bluetooth_peripheral.bluez_peripheral] GATT application registered
+2018-07-01 01:24:38,389 INFO  [bluetooth_peripheral.bluez_peripheral] Advertisement registered
+2018-07-01 01:26:13,080 INFO  [bluetooth_peripheral.bluez_peripheral] --- Mainloop finished ---
+2018-07-01 01:26:13,084 INFO  [bluetooth_peripheral.bluez_peripheral] Unregistering Advertisement...
+2018-07-01 01:26:13,124 INFO  [bluetooth_peripheral.bluez_peripheral] Peripheral unregistered

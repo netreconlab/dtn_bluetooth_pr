@@ -23,6 +23,7 @@ logger = logging.getLogger(__name__)
 def dtniotsc_cli(ctx, collector, bluetooth):
     if not collector:
         collector = False
+    
     ctx.obj = DTNIoTSCDaemon(collector, bluetooth)
 
 
@@ -78,11 +79,17 @@ class DTNIoTSCDaemon(object):
         gatt_service = IoTSCService(self._ble_peripheral.bus, 0, self._is_collector, self._deviceid, "1.0")
         self._gatt_service = gatt_service
         self._ble_peripheral.add_service(gatt_service)
+        logging.info("test3 %s", self._is_collector)
         if self._is_collector:
+            logging.info("test5")
             self._ble_peripheral.add_advertised_service_uuid(IoTSCUuids.COLLECTOR_SERVICE)
+            #self._ble_peripheral.is_discoverable(True)
+            self._ble_peripheral.start_advertising()
             #self._iotsc_dashboard = IoTSCDashboard(self._config_file, , False)
         else:
+            logging.info("test4")        	   
             self._ble_peripheral.add_advertised_service_uuid(IoTSCUuids.SENDER_SERVICE)
+            
         self._ble_peripheral.on_remote_disconnected = self._update_advertising_state
         
         # create thread for rpc server:
@@ -134,7 +141,7 @@ class IoTDB (object):
 	DB_location = '/RPC_database.sqlite'
 	
 	# initialize sqlite3 database, file location, connect to db file
-	def self.__init__(self):
+	def self__init__(self):
 		self.db = sqlite3.connect(IoTDB.DB_location)
 		self.cursor = sqlite3.connection.cursor()
 
@@ -151,7 +158,7 @@ class IoTDB (object):
 		self.connection.executemany("insert into user_table data_table(MESSAGE, FROM_USR, TO_USR) values (?, ?)", data_table) 
 
 	# execute table creation
-	def self.commit(self):
+	def self_commit(self):
 		self.connection.commit()
 
 
